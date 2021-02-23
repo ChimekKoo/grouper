@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Zaloguj - {% endblock %}
+{% block content %}
+    <div style="border: 3px solid #6b6d6d; width:40%; padding: 40px" class="w3-round center">
+        <form action="{{ url_for('login') }}" method="post">
+
+            <span style="font-size: 24px; margin-bottom: 20px">Logowanie</span><br>
+
+            <br>
+            {% if error is defined %}
+                <input class="w3-round w3-border" type="text" name="login" placeholder="Login" style="margin-bottom: 10px; width:90%; border-color: #ff9b9b; background-color: #ff9b9b" required><br>
+                <input class="w3-round w3-border" type="password" name="password" placeholder="Hasło" style="margin-bottom: 20px; width:90%; border-color: #ff9b9b; background-color: #ff9b9b" required><br>
+            {% else %}
+                <input class="w3-round w3-border w3-border-white" type="text" name="login" placeholder="Login" style="margin-bottom: 10px; width:90%" required><br>
+                <input class="w3-round w3-border w3-border-white" type="password" name="password" placeholder="Hasło" style="margin-bottom: 20px; width:90%" required><br>
+            {% endif %}
+
+            <input type="submit" value="Zaloguj się" class="w3-button w3-round w3-white" style="padding:6px"><br>
+
+            {% if error is defined %}
+                <br>
+                <div style="color:#fc7575; font-size: 14px"><span>{{ error }}</span></div>
+            {% endif %}
+
+        </form>
+    </div>
+{% endblock %}

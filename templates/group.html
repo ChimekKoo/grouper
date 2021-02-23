@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Wylosuj grupy - {% endblock %}
+{% block content %}
+    <div class="w3-container center">
+        <form action="{{ url_for('group') }}" method="post">
+
+            <div class="w3-bar" style="margin-bottom: 10px">
+                <label for="list" class="w3-bar-item">Lista osób:</label>
+                <select name="list" id="list" class="w3-bar-item w3-round" style="background-color: #505252; color: white">
+                    <option value="" disabled selected>Wybierz</option>
+                    {% for list in lists %}
+                    <option value="{{ list }}">{{ list }}</option>
+                    {% endfor %}
+                </select>
+                <a href="{{ url_for('newlist') }}" class="w3-bar-item w3-button w3-border w3-border-white w3-round" style="margin-left: 20px; padding: 4px">Nowa lista</a>
+            </div>
+
+            <div class="w3-bar" style="margin-bottom: 10px">
+                <label for="people_number" class="w3-bar-item">Liczba osób w grupie:</label>
+                <input type="number" value="2" min="1" style="width: 60px; background-color: #505252; padding: 5px" class="w3-bar-item w3-border w3-border-white w3-text-white w3-round" id="people_number" name="people_number">
+            </div>
+
+            <br>
+
+            <div class="w3-bar">
+                <input type="submit" value="Losuj!" class="w3-bar-item w3-button w3-white w3-border w3-border-white w3-round" style="width: 100px; padding: 5px">
+            </div>
+
+        </form>
+
+        {% if generated_groups is defined %}
+            <br>
+            <div class="w3-container w3-border w3-border-white w3-round w3-padding-32">
+                <ul style="list-style-type: none">
+                {% for group in generated_groups %}
+
+                    <li style="font-size: 20px">Grupa {{ group["name"] }}</li>
+                    {% for person in group["students"] %}
+                        <ul style="list-style-type: circle">
+                            <li style="font-size: 18px">{{ person }}</li>
+                        </ul>
+                    {% endfor %}
+
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

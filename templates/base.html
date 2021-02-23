@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='grouper_logo.png') }}">
+    <title>{% block title %}{% endblock %}Grouper</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+        body {
+            background-color: #464848;
+            color: white;
+            font-family: 'Ubuntu Mono', monospace;
+        }
+        a:hover {
+            color:white;
+        }
+        .w3-bar-item {
+            font-size: 16px;
+        }
+        .center {
+          margin: auto;
+          width: 50%;
+          padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="w3-bar" style="background-color: #565858">
+
+        <a href="{{ url_for('index') }}"><div class="w3-bar-item" style="font-size:18px">
+            <img src="{{ url_for('static', filename='grouper_logo.png') }}" width="40px" height="40px" style="margin-right:10px">
+            <span style="font-size: 26px"><b>Grouper</b></span>
+        </div></a>
+
+        <div class="w3-bar-item w3-right"><a href="https://github.com/ChimekKoo/grouper" target="_blank" title="Kod źródłowy na GitHubie"><img src="{{ url_for('static', filename='github_logo.png') }}" width="40px" height="40px"></a></div>
+
+        <div class="w3-bar-item w3-right"><a href="{{ url_for('request_account') }}" class="w3-button w3-white w3-border w3-border-white w3-round">Poproś o konto</a></div>
+        {% if logged == false %}
+        <div class="w3-bar-item w3-right"><a href="{{ url_for('login') }}" class="w3-button w3-border w3-border-white w3-round">Zaloguj się</a></div>
+        {% else %}
+        <div class="w3-bar-item w3-right"><a href="{{ url_for('logout') }}" class="w3-button w3-round">Wyloguj się</a></div>
+        <div class="w3-bar-item w3-right"><a href="{{ url_for('group') }}" class="w3-button w3-round">Wylosuj grupy</a></div>
+        {% endif %}
+
+    </nav>
+
+    <div class="w3-container" style="width:100%">
+        <div class="w3-container w3-padding-32">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
