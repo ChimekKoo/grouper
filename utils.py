@@ -5,7 +5,6 @@ from main import session
 def hash_password(psw):
     return bcrypt.hashpw(psw.encode(), bcrypt.gensalt())
 
-
 def check_password(psw, hash):
     return bcrypt.checkpw(psw.encode(), hash)
 
