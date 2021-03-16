@@ -1,5 +1,5 @@
 import bcrypt
-from app import session
+from main import session
 
 
 def hash_password(psw):
